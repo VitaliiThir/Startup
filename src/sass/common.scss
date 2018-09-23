@@ -1,0 +1,90 @@
+@import 'plug/rem';
+@import 'plug/variables';
+@import 'plug/media-queries';
+@import 'plug/mixins';
+@import '../../node_modules/rfs/scss/rfs';
+
+/* Global styles start*/
+* {
+  outline: none;
+}
+
+::selection {
+  background: #C5413D;
+  color: #fff;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+ul, ol, li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+button {
+  border: none;
+  padding: 0;
+  margin: 0;
+  background-color: transparent;
+  &[type="button"], &[type="submit"] {
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+a {
+  color: inherit;
+}
+
+input[type='number'] {
+  -moz-appearance: textfield;
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+
+input, textarea {
+  &:focus {
+    outline: none;
+  }
+}
+
+textarea {
+  resize: none;
+}
+
+svg {
+  width: 100%;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: inherit;
+  pointer-events: none;
+}
+
+.squeeze-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.squeeze-content {
+  flex: 1 0 auto;
+}
+
+.squeeze-footer {
+  flex: 0 0 auto;
+}
+
+/* Global styles end*/
+
+.example-responsive-text {
+  @include responsive-font-size(32);
+}
+
