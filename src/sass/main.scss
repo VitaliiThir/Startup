@@ -2,6 +2,7 @@
 @import 'plug/variables';
 @import 'plug/media-queries';
 @import 'plug/mixins';
+@import '../../node_modules/rfs/scss/rfs';
 
 // Header
 .header {
@@ -40,7 +41,7 @@
             color: #ffffff;
             font-size: rem(14px);
             font-weight: 400;
-            line-height: rem(24px);
+            line-height: 1.714em;
             letter-spacing: 0.35px;
             &:hover {
               transition: .3s linear;
@@ -59,26 +60,27 @@
     color: #ffffff;
     h1 {
       font-family: $font-family-base;
-      font-size: 48px;
+      @include rfs(48);
       font-weight: 400;
       text-transform: uppercase;
+      margin-bottom: 0.3em;
     }
     p {
       font-family: $font-family-secondary;
-      font-size: 20px;
+      @include rfs(20);
       font-weight: 400;
-      line-height: 24px;
+      line-height: 1.2em;
     }
     button {
       font-family: $font-family-base;
       color: #ffffff;
-      border-radius: 2px;
+      border-radius: 0.125em;
       border: 2px solid #ffffff;
-      padding: rem(15px) rem(33px);
+      padding: 1em 2.1875em;
       font-size: rem(16px);
-      margin-top: rem(50px);
+      margin-top: 3.125em;
       font-weight: 400;
-      line-height: rem(24px);
+      line-height: 100%;
       text-transform: uppercase;
       transition: .3s linear;
       cursor: pointer;
@@ -120,15 +122,15 @@
           font-family: $font-family-base;
           font-size: rem(14px);
           font-weight: 400;
-          line-height: rem(24px);
+          line-height: 1.714285em;
           text-transform: uppercase;
-          margin-bottom: 20px;
+          margin-bottom: 1.428571em;
         }
         p {
           font-family: $font-family-secondary;
           font-size: rem(14px);
           font-weight: 400;
-          line-height: rem(24px);
+          line-height: 1.714285em;
         }
       }
     }
@@ -152,8 +154,8 @@
     font-family: $font-family-secondary;
     font-size: rem(14px);
     font-weight: 400;
-    line-height: rem(24px);
-    margin-top: rem(70px);
+    line-height: 1.714285em;
+    margin-top: 5em;
   }
   .slider {
     margin-top: rem(70px);
@@ -224,14 +226,14 @@
           font-family: $font-family-base;
           font-size: rem(14px);
           font-weight: 400;
-          line-height: rem(24px);
+          line-height: 1.714285em;
           text-transform: uppercase;
         }
         p {
           font-family: $font-family-secondary;
           font-size: rem(13px);
           font-weight: 400;
-          line-height: rem(24px);
+          line-height: 1.846153em;
         }
       }
     }
@@ -273,35 +275,37 @@
 //Latest works
 .latest {
   &-nav {
-    margin-top: rem(70px);
     margin-bottom: rem(70px);
     ul {
       display: flex;
       justify-content: space-around;
       li {
         text-align: center;
-        a {
-          display: block;
-          color: #555555;
-          font-family: $font-family-secondary;
-          font-size: rem(16px);
-          font-weight: 400;
-          line-height: rem(24px);
-          &:hover {
-            color: #c0301c;
-          }
+        display: block;
+        color: #555555;
+        cursor: pointer;
+        font-family: $font-family-secondary;
+        font-size: rem(16px);
+        font-weight: 400;
+        line-height: rem(24px);
+        &:hover {
+          color: #c0301c;
         }
+      }
+      .active {
+        color: #c0301c;
       }
     }
   }
   &-item {
     position: relative;
-    height: 320px;
+    height: 100%;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     cursor: pointer;
     overflow: hidden;
+    height: 349.98px;
     &:hover .latest-item-link {
       transform: translateY(0%);
     }
@@ -363,6 +367,183 @@
           }
         }
       }
+    }
+  }
+}
+
+#mix-row {
+  .mix {
+    display: none;
+  }
+}
+
+//Our Work
+.our-work {
+  color: #ffffff;
+  text-align: center;
+  font-family: $font-family-secondary;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  font-weight: 400;
+  @include rfs(30);
+  line-height: 1.4666em;
+  padding-top: 3.333em;
+  padding-bottom: 3.333em;
+  a {
+    button {
+      color: #ffffff;
+      border-radius: 0.111em;
+      border: 0.111em solid #ffffff;
+      cursor: pointer;
+      @include rfs(20);
+      font-weight: 400;
+      line-height: 100%;
+      padding: 1.111em 1.666em;
+      text-transform: uppercase;
+      margin-top: 2.5em;
+      transition: all .3s linear;
+      &:hover {
+        background-color: rgba(#fff, .6);
+        color: #C5413D;
+        box-shadow: inset 0 0 0 4px #C5413D;
+      }
+    }
+  }
+}
+
+// Recent blog posts
+.blog {
+  &-section {
+    padding-top: rem(40px);
+    padding-bottom: rem(40px);
+    border-bottom: 1px solid #dddddd;
+    cursor: pointer;
+    &:nth-child(2) {
+      margin-top: rem(40px);
+    }
+    &:last-child {
+      border-bottom: none;
+    }
+    &:hover .blog-section-content-title__text h4{
+      color: #c0301c;
+    }
+    &:hover .blog-section-content-title__text p {
+      color: #c0301c;
+    }
+    &:hover .blog-section-content__link a{
+      color: #c0301c;
+    }
+    &__img {
+      height: 322px;
+      div {
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        height: 100%;
+      }
+    }
+    &-content {
+      &-title {
+        display: flex;
+        &__date {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          text-align: center;
+          font-family: $font-family-base;
+          color: #777777;
+          font-weight: 700;
+          text-transform: uppercase;
+          border: 2px solid #555555;
+          padding: rem(20px) rem(25px);
+          margin-right: rem(30px);
+          span {
+            display: block;
+            line-height: 100%;
+            &:first-child {
+              @include rfs(24);
+              letter-spacing: 0.171428em;
+              margin-bottom: 0.15em;
+            }
+            &:nth-child(2) {
+              font-size: rem(14px);
+              letter-spacing: 0.1em;
+            }
+          }
+        }
+        &__text {
+          h4 {
+            color: #555555;
+            font-family: $font-family-base;
+            font-size: rem(16px);
+            font-weight: 400;
+            line-height: 1.5em;
+            text-transform: uppercase;
+            margin-bottom: 1.25em;
+            transition: color .3s linear;
+          }
+          p {
+            font-family: $font-family-secondary;
+            color: #777777;
+            font-size: rem(13px);
+            font-weight: 400;
+            font-style: italic;
+            line-height: 1.846em;
+            margin-bottom: 1.153em;
+            transition: color .3s linear;
+          }
+        }
+      }
+      &__description {
+        color: #555555;
+        font-family: $font-family-secondary;
+        font-size: rem(14px);
+        font-weight: 400;
+        margin-top: 1.714em;
+        p {
+          line-height: 1.714em;
+        }
+      }
+      &__link {
+        font-family: $font-family-secondary;
+        font-size: rem(13px);
+        font-weight: 700;
+        text-transform: uppercase;
+        margin-top: 2.692em;
+        a {
+          color: #777777;
+          line-height: 100%;
+          letter-spacing: 0.1em;
+          transition: color .3s linear;
+        }
+      }
+    }
+  }
+}
+
+// Reviews
+.reviews {
+  background-color: #f8f8f8;
+  &-logo-clients {
+    figure {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: rem(70px);
+      img {
+        max-width: 100%;
+      }
+    }
+  }
+  &-slider {
+    margin-top: rem(70px);
+    &-item {
+      text-align: center;
+      max-width: 90%;
+      @include mx-auto;
+      p {}
+      h5 {}
     }
   }
 }
