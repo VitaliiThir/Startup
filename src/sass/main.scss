@@ -62,6 +62,11 @@
               color: #C5413D;
             }
           }
+          .selected {
+            transition: .3s linear;
+            background-color: rgba(#fff, .6);
+            color: #C5413D;
+          }
         }
       }
     }

@@ -63,12 +63,16 @@ $(function () {
     });
 
     // Lesson
+    let flag = false;
     $(window).on("scroll", function () {
         let winScrollTop = $(this).scrollTop();
-        if (winScrollTop > 0) {
-            $('.top-header').addClass('top-header--fixed').css('position', 'fixed');
-        }else {
-            $('.top-header').removeClass('top-header--fixed').css('position', 'absolute');
+        if (!flag) {
+            if (winScrollTop > 0) {
+                $('.top-header').addClass('top-header--fixed').css('position', 'fixed');
+                flag = true;
+            } else {
+                $('.top-header').removeClass('top-header--fixed').css('position', 'absolute');
+            }
         }
     });
     let os = new OnScreen({
@@ -82,6 +86,31 @@ $(function () {
     os.on('leave', '.fadeShow', (element, event) => {
         element.style.opacity = '0';
     });
+
+    // PAGE SCROLL
+    $('.nav a').on('click', function () {
+        let selector = $(this).attr('href');
+        let h = $(selector);
+        $('html, body').animate({
+            scrollTop: h.offset().top
+        }, 900);
+    });
+
+    $(window).scroll(function () {
+        activeMenuLink();
+    });
+
+    function activeMenuLink() {
+        $('.nav a').each(function () {
+            let winTop = $(window).scrollTop();
+            let selector = $(this).attr('href');
+            let sectionTop = $(selector).offset().top;
+
+            if (winTop > sectionTop - 200) {
+                $('.nav a').removeClass('selected').filter(this).addClass('selected');
+            }
+        });
+    };
 });
 
 

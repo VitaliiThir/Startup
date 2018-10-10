@@ -19,7 +19,7 @@
 <body>
 <div class="squeeze-wrapper">
     <div class="squeeze-content">
-        <header class="header" style="background-image:url('img/header-bg.jpg');">
+        <header class="header" id="home" style="background-image:url('img/header-bg.jpg');">
             <div class="top-header">
                 <div class="container">
                     <div class="row align-items-center">
@@ -31,13 +31,13 @@
                         <div class="col-md-6 offset-md-4">
                             <nav class="nav">
                                 <ul>
-                                    <li><a href="#">Home</a></li>
-                                    <li><a href="#">Services</a></li>
-                                    <li><a href="#">About</a></li>
-                                    <li><a href="#">Works</a></li>
-                                    <li><a href="#">Blog</a></li>
-                                    <li><a href="#">Clients</a></li>
-                                    <li><a href="#">Contact</a></li>
+                                    <li><a class="selected" href="#home">Home</a></li>
+                                    <li><a href="#services">Services</a></li>
+                                    <li><a href="#about">About</a></li>
+                                    <li><a href="#works">Works</a></li>
+                                    <li><a href="#blog">Blog</a></li>
+                                    <li><a href="#clients">Clients</a></li>
+                                    <li><a href="#contact">Contact</a></li>
                                 </ul>
                             </nav>
                         </div>
@@ -56,7 +56,7 @@
         </header>
 <main>
     <!-- Services -->
-    <section class="services section">
+    <section class="services section" id="services">
         <div class="container">
             <div class="row">
                 <div class="col-md-6 offset-md-3">
@@ -122,7 +122,7 @@
     </section>
 
     <!-- About us -->
-    <section class="about-us section fadeShow">
+    <section class="about-us section fadeShow" id="about">
         <div class="container">
             <div class="row">
                 <div class="col-md-6 offset-md-3">
@@ -348,7 +348,7 @@
     </section>
 
     <!-- Latest works -->
-    <section class="latest section fadeShow">
+    <section class="latest section fadeShow" id="works">
         <div class="container">
             <div class="row">
                 <div class="col-md-6 offset-md-3">
@@ -502,7 +502,7 @@
     </section>
 
     <!-- Recent blog posts -->
-    <article class="blog section fadeShow">
+    <article class="blog section fadeShow" id="blog">
         <div class="container">
             <div class="row">
                 <div class="col-md-6 offset-md-3">
@@ -596,7 +596,7 @@
     </article>
 
     <!-- Reviews and clients -->
-    <section class="reviews section fadeShow">
+    <section class="reviews section fadeShow" id="clients">
         <div class="container">
             <div class="reviews-logo-clients">
                 <div class="row">
@@ -662,7 +662,7 @@
 </main>
 </div>
 <!-- content end -->
-<footer class="footer squeeze-footer">
+<footer class="footer squeeze-footer" id="contact">
 	<p class="example-responsive-text text-center">Soon here will be the footer of the site</p>
 </footer>
 
