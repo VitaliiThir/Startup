@@ -62,5 +62,26 @@ $(function () {
         theme: "theme-2"
     });
 
+    // Lesson
+    $(window).on("scroll", function () {
+        let winScrollTop = $(this).scrollTop();
+        if (winScrollTop > 0) {
+            $('.top-header').addClass('top-header--fixed').css('position', 'fixed');
+        }else {
+            $('.top-header').removeClass('top-header--fixed').css('position', 'absolute');
+        }
+    });
+    let os = new OnScreen({
+        tolerance: 200,
+        debounce: -200,
+        container: window
+    });
+    os.on('enter', '.fadeShow', (element, event) => {
+        element.style.opacity = '1';
+    });
+    os.on('leave', '.fadeShow', (element, event) => {
+        element.style.opacity = '0';
+    });
 });
+
 
