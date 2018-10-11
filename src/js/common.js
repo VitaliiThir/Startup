@@ -54,7 +54,8 @@ $(function () {
         autoplayTimeout: 5000,
         items: 1,
         margin: 30,
-        dots: false,
+        dots: true,
+        dotsSpeed: 1500,
         loop: true,
         autoplay: true,
         pagination: false,
@@ -63,29 +64,12 @@ $(function () {
     });
 
     // Lesson
-    let flag = false;
     $(window).on("scroll", function () {
-        let winScrollTop = $(this).scrollTop();
-        if (!flag) {
-            if (winScrollTop > 0) {
-                $('.top-header').addClass('top-header--fixed').css('position', 'fixed');
-                flag = true;
-            } else {
-                $('.top-header').removeClass('top-header--fixed').css('position', 'absolute');
-            }
-        }
+        navFix();
+        activeMenuLink();
+        scrollBtn();
     });
-    let os = new OnScreen({
-        tolerance: 200,
-        debounce: -200,
-        container: window
-    });
-    os.on('enter', '.fadeShow', (element, event) => {
-        element.style.opacity = '1';
-    });
-    os.on('leave', '.fadeShow', (element, event) => {
-        element.style.opacity = '0';
-    });
+    navFix();
 
     // PAGE SCROLL
     $('.nav a').on('click', function () {
@@ -94,10 +78,6 @@ $(function () {
         $('html, body').animate({
             scrollTop: h.offset().top
         }, 900);
-    });
-
-    $(window).scroll(function () {
-        activeMenuLink();
     });
 
     function activeMenuLink() {
@@ -110,7 +90,67 @@ $(function () {
                 $('.nav a').removeClass('selected').filter(this).addClass('selected');
             }
         });
+    }
+
+    function navFix() {
+        let winScrollTop = $(this).scrollTop();
+        if (winScrollTop > 0) {
+            $('.top-header').addClass('top-header--fixed').css('position', 'fixed');
+        } else {
+            $('.top-header').removeClass('top-header--fixed').css('position', 'absolute');
+        }
+    }
+
+    // SCROLL BTN
+    let btnScrollTop = $('.button-top');
+
+    function scrollBtn() {
+        let bodyScroll = $('html, body').scrollTop();
+
+        if (bodyScroll > 300) {
+            $(btnScrollTop).addClass('scroll-top--visible');
+        } else {
+            $(btnScrollTop).removeClass('scroll-top--visible');
+        }
+    }
+
+    $(btnScrollTop).on('click', function () {
+        $('html, body').animate({
+            scrollTop: 0
+        }, 600);
+    });
+
+    // События при появлении в экране
+    let os = new OnScreen({
+        tolerance: 200,
+        debounce: -200,
+        container: window
+    });
+    os.on('enter', '.fadeShow', (element) => {
+        element.style.opacity = '1';
+    });
+    os.on('leave', '.fadeShow', (element) => {
+        element.style.opacity = '0';
+    });
+
+
+    $.fn.animate_Text = function(speed) {
+        let string = this.text();
+        return this.each(function(){
+            let $this = $(this);
+            $this.html(string.replace(/./g, '<span class="new">$&</span>'));
+            $this.find('span.new').each(function(i, el){
+                setTimeout(function(){ $(el).addClass('div_opacity'); }, speed * i);
+            });
+        });
     };
+    setTimeout(function () {
+        $('.example').show();
+        $('.example').animate_Text(70);
+        $('.type-text').show();
+        $('.type-text').animate_Text(50);
+    }, 1300);
+
 });
 
 

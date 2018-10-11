@@ -10,6 +10,16 @@
 }
 
 // Header
+.example .new, .type-text .new {
+  opacity: 0;
+}
+.example .div_opacity, .type-text .div_opacity {
+  opacity: 1;
+}
+@keyframes  headerItem {
+  0%{opacity: 0;}
+  100%{opacity: 1;}
+}
 .header {
   display: flex;
   align-items: center;
@@ -28,7 +38,10 @@
     font-family: $font-family-base;
     color: #ffffff;
     padding-top: rem(40px);
+    opacity: 0;
     transition: all .2s linear;
+    animation: headerItem 1.2s linear forwards;
+    animation-delay: 1s;
 
     .logo {
       p {
@@ -49,6 +62,7 @@
           a {
             display: block;
             text-transform: capitalize;
+            transition: .3s linear;
             height: 100%;
             width: 100%;
             color: #ffffff;
@@ -57,13 +71,11 @@
             line-height: 1.714em;
             letter-spacing: 0.35px;
             &:hover {
-              transition: .3s linear;
               background-color: rgba(#fff, .6);
               color: #C5413D;
             }
           }
           .selected {
-            transition: .3s linear;
             background-color: rgba(#fff, .6);
             color: #C5413D;
           }
@@ -75,6 +87,9 @@
   .header-item {
     text-align: center;
     color: #ffffff;
+    opacity: 0;
+    animation: headerItem 1s linear forwards;
+    animation-delay: 1.5s;
     h1 {
       font-family: $font-family-base;
       @include rfs(48);
@@ -89,6 +104,7 @@
       line-height: 1.2em;
     }
     button {
+      opacity: 0;
       font-family: $font-family-base;
       color: #ffffff;
       border-radius: 0.125em;
@@ -101,6 +117,8 @@
       text-transform: uppercase;
       transition: .3s linear;
       cursor: pointer;
+      animation: headerItem 1s linear forwards;
+      animation-delay: 3s;
       &:hover {
         background-color: rgba(#fff, .6);
         color: #C5413D;
@@ -410,12 +428,15 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  font-weight: 400;
   transition: all .7s linear;
   @include rfs(30);
-  line-height: 1.4666em;
   padding-top: 3.333em;
   padding-bottom: 3.333em;
+  h4, h5 {
+    line-height: 1.4666em;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+  }
   a {
     button {
       color: #ffffff;
@@ -425,7 +446,7 @@
       @include rfs(20);
       font-weight: 400;
       line-height: 100%;
-      padding: 1.111em 1.666em;
+      padding: 0.9em 1.666em;
       text-transform: uppercase;
       margin-top: 2.5em;
       transition: all .3s linear;
@@ -566,11 +587,189 @@
   &-slider {
     margin-top: rem(70px);
     &-item {
+      font-family: $font-family-secondary;
+      color: #555555;
       text-align: center;
       max-width: 90%;
       @include mx-auto;
-      p {}
-      h5 {}
+      p {
+        @include rfs(18);
+        font-weight: 400;
+        font-style: italic;
+        line-height: 1.666em;
+      }
+      h5 {
+        @include rfs(20);
+        font-weight: 400;
+        line-height: 100%;
+        margin-top: 2em;
+      }
+    }
+    .owl-dots {
+      text-align: center;
+      .owl-dot {
+        width: 13px;
+        height: 13px;
+        border-radius: 50%;
+        background-color: #dddddd;
+        margin-right: 7px;
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+      .owl-dot.active {
+        background-color: #c0301c;
+      }
     }
   }
 }
+
+// Get in touch
+.contact {
+  &-data {
+    padding-top: rem(70px);
+    ul {
+      position: relative;
+      margin-bottom: rem(35px);
+      padding-left: rem(30px);
+      &:last-child {
+        margin-bottom: 0;
+      }
+      &:nth-child(1) {
+        li {
+          &:first-child::before {
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            content: "";
+            left: 0;
+            width: rem(20px);
+            height: rem(20px);
+            background-image: url('../img/contact/map-marker.svg');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+          }
+        }
+      }
+      &:nth-child(2) {
+        li {
+          &:first-child::before {
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            content: "";
+            left: 0;
+            width: rem(20px);
+            height: rem(20px);
+            background-image: url('../img/contact/mobile-phone.svg');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+          }
+        }
+      }
+      &:nth-child(3) {
+        li {
+          &:first-child::before {
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            content: "";
+            left: 0;
+            width: rem(20px);
+            height: rem(20px);
+            background-image: url('../img/contact/write.svg');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+          }
+        }
+      }
+      li {
+        color: #555555;
+        font-family: $font-family-secondary;
+        font-size: rem(12px);
+        font-weight: 400;
+        line-height: 1.666em;
+        &:first-child {
+          display: flex;
+          align-items: center;
+          font-weight: 700;
+          font-family: $font-family-base;
+          font-size: rem(14px);
+          line-height: 2.142em;
+          text-transform: uppercase;
+        }
+      }
+    }
+  }
+
+// Form
+  &-form {
+    padding-top: rem(70px);
+    form {
+      font-family: $font-family-secondary;
+      color: #555555;
+      font-size: rem(12px);
+      input[type="text"],
+      input[type="submit"],
+      textarea {
+        width: 100%;
+        line-height: 100%;
+        border: 1px solid #555555;
+        padding: rem(15px) rem(17px);
+        caret-color: #555555;
+        &::placeholder {
+          text-transform: uppercase;
+          color: #555555;
+          font-weight: 400;
+        }
+      }
+      fieldset {
+        height: rem(65px);
+        width: 100%;
+        input[type="text"] {}
+      }
+      input[type="submit"] {
+        cursor: pointer;
+        color: #555555;
+        border: 1px solid #555555;
+        letter-spacing: 0.6px;
+        transition: all .3s linear;
+        background-color: transparent;
+        padding: rem(15px) rem(17px);
+        font-weight: 400;
+        line-height: 100%;
+        text-transform: uppercase;
+        &:hover {
+          background-color: rgba(#000, .6);
+          color: #fff;
+        }
+      }
+      .message {
+        height: rem(125px);
+        textarea {
+          height: rem(104px);
+        }
+      }
+    }
+    .security {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 100%;
+      span {
+        color: #c0301c;
+      }
+      p {
+        line-height: 100%;
+      }
+    }
+  }
+}
+
+
