@@ -94,10 +94,13 @@ $(function () {
 
     function navFix() {
         let winScrollTop = $(this).scrollTop();
-        if (winScrollTop > 0) {
-            $('.top-header').addClass('top-header--fixed').css('position', 'fixed');
-        } else {
-            $('.top-header').removeClass('top-header--fixed').css('position', 'absolute');
+        let windowWidth = $(window).width();
+        if (windowWidth > 768) {
+            if (winScrollTop > 0) {
+                $('.top-header').addClass('top-header--fixed').css('position', 'fixed');
+            } else {
+                $('.top-header').removeClass('top-header--fixed').css('position', 'absolute');
+            }
         }
     }
 
@@ -121,35 +124,109 @@ $(function () {
     });
 
     // События при появлении в экране
-    let os = new OnScreen({
-        tolerance: 200,
-        debounce: -200,
-        container: window
-    });
-    os.on('enter', '.fadeShow', (element) => {
-        element.style.opacity = '1';
-    });
-    os.on('leave', '.fadeShow', (element) => {
-        element.style.opacity = '0';
-    });
+    var windWidth = $(window).width();
+    if(windWidth > 576) {
+        let os = new OnScreen({
+            tolerance: 170,
+            debounce: -170,
+            container: window
+        });
+        os.on('enter', '.fadeShow', (element) => {
+            element.style.opacity = '1';
+        });
+        os.on('leave', '.fadeShow', (element) => {
+            element.style.opacity = '0';
+        });
+    }
+    if(windWidth < 576) {
+        let os = new OnScreen({
+            tolerance: 50,
+            debounce: -50,
+            container: window
+        });
+        os.on('enter', '.fadeShow', (element) => {
+            element.style.opacity = '1';
+        });
+        os.on('leave', '.fadeShow', (element) => {
+            element.style.opacity = '0';
+        });
+    }
 
 
-    $.fn.animate_Text = function(speed) {
+    $.fn.animate_Text = function (speed) {
         let string = this.text();
-        return this.each(function(){
+        return this.each(function () {
             let $this = $(this);
             $this.html(string.replace(/./g, '<span class="new">$&</span>'));
-            $this.find('span.new').each(function(i, el){
-                setTimeout(function(){ $(el).addClass('div_opacity'); }, speed * i);
+            $this.find('span.new').each(function (i, el) {
+                setTimeout(function () {
+                    $(el).addClass('div_opacity');
+                }, speed * i);
             });
         });
     };
-    setTimeout(function () {
-        $('.example').show();
-        $('.example').animate_Text(70);
-        $('.type-text').show();
-        $('.type-text').animate_Text(50);
-    }, 1300);
+    $('.example').show();
+    $('.example').animate_Text(70);
+
+    // Validation form
+    $('.contact-form form').validate({
+        rules: {
+            name: {
+                required: true,
+                minlength: 2
+            },
+            email: {
+                required: true,
+                email: true
+            },
+            message: {
+                required: true,
+                minlength: 10
+            }
+        },
+        messages: {
+            name: {
+                required: 'Please enter a name',
+                minlength: 'Name cannot be less than two characters'
+            },
+            email: {
+                required: 'Please enter a phone',
+                email: 'Enter a valid email address'
+            },
+            message: {
+                required: 'Please enter a message',
+                minlength: 'The minimum message length is 10 characters'
+            }
+        },
+        focusCleanup: false,
+        focusInvalid: true
+    });
+
+    // Mobile nav
+    if(windWidth < 576) {
+        $('.menu-bar').on('click', function () {
+            $('.nav').fadeIn(400);
+            $('.nav').addClass('nav--active').css({
+                'display': '-webkit-flex',
+                'display': '-moz-flex',
+                'display': '-ms-flex',
+                'display': '-o-flex',
+                'display': 'flex'
+            });
+            $('.menu-bar-close').fadeIn(400);
+        });
+        $('.nav a').on('click', function () {
+            $('.nav').fadeOut(400);
+            $('.menu-bar-close').fadeOut(200);
+        });
+        $('.menu-bar-close').on('click', function () {
+            $(this).fadeOut(200);
+            $('.nav').fadeOut(400);
+            setTimeout(function () {
+                $('.nav').removeClass('nav--active');
+            }, 400);
+        });
+    }
 
 });
 
